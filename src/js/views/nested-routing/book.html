@@ -1,0 +1,8 @@
+<oj-bind-if test="[[router.currentState()]]">
+    <div id="chapter">
+        <div class="oj-panel demo-page-content-area">
+            <h2 id="currentPage"><oj-bind-text value="[[router.currentState().label]]"></oj-bind-text></h2>
+            <oj-text-area id="text" style="resize: both; height: 6em; max-width:100%;" value="{{router.currentValue}}"></oj-text-area>
+        </div>
+    </div>
+</oj-bind-if>

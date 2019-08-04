@@ -1,0 +1,158 @@
+<div class="oj-hybrid-padding">
+
+
+    <div class="oj-flex oj-panel message-section">
+        <!--messages or Notifiaction part -->
+        <div id="sampleDemo" style="" class="demo-padding demo-container">
+            <div id="componentDemoContent" style="width: 100%; min-width: 100%;">
+
+                <!-- Page -->
+                <div id="inlineMessages">
+
+                    <!-- Messages -->
+                    <oj-messages messages="[[dataprovider]]" on-oj-close="[[removeMessageData]]" on-oj-action="[[more]]">
+                        <template slot="messageTemplate" data-oj-as="message">
+                            <oj-message message="[[message.data]]">
+                                <!-- For 'warning' severity message, let the default template apply.
+                                     For 'error' and 'confirmation' severity messages, control detail area rendering using
+                                     'messageTemplate' and 'detail' slots. -->
+                                <oj-bind-if test="[[message.data.severity !== 'warning']]">
+                                    <div slot="detail" class="oj-flex-bar oj-sm-align-items-center">
+
+                                        <!-- The detail text area -->
+                                        <div class="oj-flex-bar-middle">
+                        <span>
+                          <oj-bind-text value="[[message.data.detail]]"></oj-bind-text>
+                            <!-- If the message contains action data, add a text or image link in-lined with
+                                 the detail text-->
+                          <oj-bind-if test="[[message.data.messageAction.action]]">
+                            <a :href="[[message.data.messageAction.action]]">
+
+
+                              <oj-bind-if test="[[message.data.messageAction.title]]">
+                                <oj-bind-text value="[[message.data.messageAction.title]]"></oj-bind-text>
+                              </oj-bind-if>
+                              <oj-bind-if test="[[message.data.messageAction.icon]]">
+                                <span :class="[['oj-fwk-icon ' + message.data.messageAction.icon]]"></span>
+                              </oj-bind-if>
+                            </a>
+                          </oj-bind-if>
+
+                        </span>
+                                        </div>
+
+                                        <!-- Adding other JET controls to message detail area -->
+                                        <div class="oj-flex-bar-end oj-sm-padding-1x-start">
+                                            <oj-bind-if test="[[message.data.severity === 'error']]">
+                                                <oj-button on-oj-action="[[closeMessage]]">Close</oj-button>
+                                            </oj-bind-if>
+                                            <oj-bind-if test="[[message.data.severity === 'confirmation']]">
+                                                <oj-progress type="circle" value="-1"></oj-progress>
+                                            </oj-bind-if>
+                                        </div>
+
+                                    </div>
+                                </oj-bind-if>
+                            </oj-message>
+                        </template>
+                    </oj-messages>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <!--progress chart section-->
+
+    <div   class="oj-flex oj-panel progress-chart-section">
+
+
+
+     </div>
+    <!-- Graph chart section -->
+
+    <div  class="oj-flex oj-panel graph-chart-section">
+
+
+
+                <div id='chart-container'>
+                    <h9 id="label1" style="display:inline-block;width:48%;height:15px;">Service Transactions</h9>
+                    <br/>
+
+
+                    <oj-chart id="lineChart2"
+                              type="line"
+                              data="[[dataProvider]]"
+                              animation-on-display="auto"
+                              animation-on-data-change="auto"
+                              hide-and-show-behavior="withRescale"
+                              hidden-categories="{{hiddenCategories}}"
+                              orientation="[[orientationValue]]"
+                              timeAxisType="skipGaps"
+                              legend.max-size="25%" legend.position="bottom"
+                              style="width:100%;height:190px;float:left;">
+
+
+                        <template slot="itemTemplate" data-oj-as="item">
+                            <oj-chart-item
+
+                                    value="[[item.data['count']]]"
+                                    group-id="[[ [item.data['transactionRequestDateTime']] ]]"
+                                    series-id="[[item.data.serviceType]]"
+                            >
+
+                            </oj-chart-item>
+                        </template>
+
+                        <template slot="seriesTemplate" data-oj-as="series">
+                            <oj-chart-series
+                                    line-type="stepped"
+                                    line-width="1.5"
+                                    marker-displayed="on"
+                                    marker-shape="square"
+                                    marker-size="6"
+                            >
+
+                            </oj-chart-series>
+                        </template>
+
+
+
+                    </oj-chart>
+
+
+                    <div style="width:100%;float:left;padding-bottom:8px;">
+                        <h9 id="currentText" style="padding-left:16px;float:left;">hiddenCategories:</h9>
+                        <h9 id="currentText2" :style.padding-left="16px" :style.float="left" :style.font-style="[[hiddenCategories().length === 0 ? 'italic' : 'normal']]"><oj-bind-text value="[[categoryInfo]]"></oj-bind-text></h9>
+                    </div>
+                    <!-- vertical/horizontal toggle button -->
+                    <demo-chart-orientation-control id="orientationControl" type="line" orientation="{{orientationValue}}" aria-controls="lineChart1 lineChart2">
+                    </demo-chart-orientation-control>
+                </div>
+
+
+    </div>
+
+    <!-- This section contains the pi chart of the graph-->
+
+    <div  class="oj-flex oj-panel pie-chart-serction">
+
+        <p>  pie chart area</p>
+
+
+    </div>
+
+
+
+
+
+</div>
+
+
+
+</div>
+</div>

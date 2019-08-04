@@ -1,0 +1,187 @@
+<div id="sampleDemo" style="" class="demo-padding demo-container">
+    <div id="componentDemoContent" style="width: 1px; min-width: 100%;">
+
+
+        <div id='chart-container'>
+
+            <br/>
+
+
+            <div>
+                <h2 style="text-align:center;width:48%;float:left;">Regular Time Axis (Enabled)</h2>
+                <h2 style="text-align:center;width:48%;float:right;">Regular Time Axis (SkipGaps)</h2>
+            </div>
+
+            <oj-chart id="comboChart1"
+                      type="line"
+                      series="[[regularSeriesValue]]"
+                      groups="[[regularGroupsValue]]"
+                      animation-on-display="auto"
+
+                      time-axis-type="enabled"
+                      orientation="vertical"
+                      animation-on-display="auto"
+                      animation-on-data-change="auto"
+                      hide-and-show-behavior="withRescale"
+                      x-axis.title="Time"
+                      y-axis.title="count"
+                      line-type="stepped"
+                      legend.max-size="25%" legend.position="bottom"
+
+                      style="width:48%;height:350px;float:left;">
+
+                <template slot='seriesTemplate' data-oj-as="series">
+                    <oj-chart-series
+                            line-type="stepped"
+                            line-width="1.5"
+                            marker-displayed="on"
+                            marker-shape="square"
+                            marker-size="6"
+                            market-color="blue"
+                            drilling='on'
+                    >
+                    </oj-chart-series>
+                </template>
+
+
+            </oj-chart>
+
+
+            <oj-chart id="comboChart1"
+                      type="line"
+                      series="[[regularSeriesValue]]"
+                      groups="[[regularGroupsValue]]"
+                      animation-on-display="auto"
+                      animation-on-data-change="auto"
+                      time-axis-type="skipGaps"
+                      orientation="vertical"
+                      animation-on-display="auto"
+                      animation-on-data-change="auto"
+                      hide-and-show-behavior="withRescale"
+                      x-axis.title="Time"
+                      y-axis.title="count"
+                      line-type="stepped"
+                      legend.max-size="25%" legend.position="bottom"
+
+                      style="width:48%;height:350px;float:left;">
+
+
+            </oj-chart>
+
+            <div id=''>
+
+                <h2 id="label1" style="display:inline-block;width:48%;height:15px;">Service Transactions (Mixed
+                    Frequency)</h2>
+                <br/>
+
+
+                <oj-chart id="comboChart2"
+                          type="line"
+
+                          series="[[mixedSeriesValue]]"
+                          animation-on-display="auto"
+                          animation-on-data-change="auto"
+                          time-axis-type="mixedFrequency"
+                          orientation="vertical"
+                          animation-on-display="auto"
+                          animation-on-data-change="auto"
+                          hide-and-show-behavior="withRescale"
+                          x-axis.title="Time"
+                          y-axis.title="count"
+                          line-type="stepped"
+                          legend.max-size="25%" legend.position="bottom"
+
+                          style="width:48%;height:350px;float:left;">
+
+                    <template slot="itemTemplate" data-oj-as="item">
+                        <oj-chart-item
+
+
+
+                        >
+
+                        </oj-chart-item>
+
+                        <!--  x="[[item.data['transactionRequestDateTime']]]"time-axis-type="mixedFrequency" x="[[item.data['time']]]"  time-axis-type="mixedFrequency" x="[[item.data['transactionRequestDateTime']]]"   group-id="[[ [item.data['transactionRequestDateTime']] ]]"-->
+
+                    </template>
+                    <!--   -->
+                    <template slot="seriesTemplate" data-oj-as="series">
+                        <oj-chart-series
+                                line-type="stepped"
+                                line-width="1.5"
+                                marker-displayed="on"
+                                marker-shape="square"
+                                marker-size="6"
+                                market-color="blue"
+
+                        >
+
+                        </oj-chart-series>
+                    </template>
+                </oj-chart>
+
+
+            </div>
+
+            <div id='kkk'>
+
+                <h2 style="display:inline-block;width:48%;height:15px;">Service Transactions </h2>
+                <br/>
+
+
+                <oj-chart id="lineChart2"
+                          type="line"
+                          time-axis-type="mixedFrequency"
+                          data="[[dataProvider]]"
+                          animation-on-display="auto"
+                          animation-on-data-change="auto"
+                          hide-and-show-behavior="withRescale"
+                          x-axis.title="Time"
+                          y-axis.title="count"
+                          line-type="stepped"
+                          legend.max-size="25%" legend.position="bottom"
+                          style="  width:50%;height:300px;float:left;"
+                >
+
+                    <template slot="itemTemplate" data-oj-as="item">
+                        <oj-chart-item
+                                x="[[item.data['transactionRequestDateTime']]]"
+                                value="[[item.data['count']]]"
+                                series-id="[[item.data.serviceType]]"
+                                group-id="[[ [item.data['transactionRequestDateTime']] ]]"
+
+                        >
+
+                        </oj-chart-item>
+
+                        <!--  x="[[item.data['transactionRequestDateTime']]]"time-axis-type="mixedFrequency" x="[[item.data['time']]]"  time-axis-type="mixedFrequency" x="[[item.data['transactionRequestDateTime']]]"   group-id="[[ [item.data['transactionRequestDateTime']] ]]"-->
+
+                    </template>
+                    <!--   -->
+                    <template slot="seriesTemplate" data-oj-as="series">
+                        <oj-chart-series
+                                line-type="stepped"
+                                line-width="1.5"
+                                marker-displayed="on"
+                                marker-shape="square"
+                                marker-size="6"
+                                market-color="blue"
+
+                        >
+
+                        </oj-chart-series>
+                    </template>
+
+
+                </oj-chart>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>

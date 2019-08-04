@@ -1,0 +1,80 @@
+<div id="sampleDemo" style="" class="demo-padding demo-container">
+    <div id="componentDemoContent" style="width: 1px; min-width: 100%;">
+
+        <div id='chart-container'>
+            <h9 id="label1" style="display:inline-block;width:48%;height:15px;">Service Transactions</h9>
+            <br/>
+
+            <oj-chart id="lineChart2"
+                      type="line"
+                      data="[[dataProvider]]"
+                      animation-on-display="auto"
+                      animation-on-data-change="auto"
+                      hide-and-show-behavior="withRescale"
+                      x-axis.title="Time"
+                      y-axis.title="count"
+                      line-type="stepped"
+
+                      legend.max-size="25%" legend.position="bottom"
+                      style="  width:50%;height:300px;float:left;"
+            >
+
+                <template slot="itemTemplate" data-oj-as="item">
+                    <oj-chart-item
+
+                            value="[[item.data['count']]]"
+                            series-id="[[item.data.serviceType]]"
+                            group-id="[[ [item.data['time']] ]]"
+
+                    >
+
+                    </oj-chart-item>
+
+                    <!--  x="[[item.data['transactionRequestDateTime']]]"time-axis-type="mixedFrequency" x="[[item.data['time']]]"  time-axis-type="mixedFrequency" x="[[item.data['transactionRequestDateTime']]]"   group-id="[[ [item.data['transactionRequestDateTime']] ]]"-->
+
+                </template>
+                <!--   -->
+                <template slot="seriesTemplate" data-oj-as="series">
+                    <oj-chart-series
+                            line-type="stepped"
+                            line-width="1.5"
+                            marker-displayed="on"
+                            marker-shape="square"
+                            marker-size="6"
+                            market-color="blue"
+
+                    >
+
+                    </oj-chart-series>
+                </template>
+
+
+            </oj-chart>
+
+
+
+
+
+            <!-- value="[[item.data['count']]]"
+                    group-id="[[ [item.data['transactionRequestDateTime']] ]]"
+                    series-id="[[item.data.serviceType]]"
+                                   "-->
+
+
+
+            <div style="width:100%;float:left;padding-bottom:8px;">
+                <h9 id="currentText" style="padding-left:16px;float:left;">hiddenCategories:</h9>
+                <h9 id="currentText2" :style.padding-left="16px" :style.float="left"
+                    :style.font-style="[[hiddenCategories().length === 0 ? 'italic' : 'normal']]">
+                    <oj-bind-text value="[[categoryInfo]]"></oj-bind-text>
+                </h9>
+            </div>
+            <!-- vertical/horizontal toggle button -->
+            <demo-chart-orientation-control id="orientationControl" type="line" orientation="{{orientationValue}}"
+                                            aria-controls="lineChart1 lineChart2">
+            </demo-chart-orientation-control>
+        </div>
+
+
+    </div>
+</div>

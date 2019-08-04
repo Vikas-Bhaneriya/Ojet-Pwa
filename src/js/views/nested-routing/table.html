@@ -1,0 +1,7 @@
+<oj-bind-if test="[[table()]]">
+    <div id="dataContent">
+        <div role="main" class="demo-page-content-area">
+            <oj-table id="dataGrid" data="[[table().getDataProvider()]]" columns-default.sortable="disabled" columns="[[table().getColumns()]]"></oj-table>
+        </div>
+    </div>
+</oj-bind-if>
